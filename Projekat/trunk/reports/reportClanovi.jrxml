@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportClanovi" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e9140f4-79c1-4f1e-9ecc-d661f55284ed">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.background.image" value="F:\PIS\Reports\lib\Slika.jpeg"/>
+	<property name="ireport.background.image.properties" value="true,true,0.25,-8,-8,0,0,304,191"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     CLANSKA_KARTA."ID_CLANSKE_KARTE" AS BrClKarte,
+     TIP_CLANARINE."NAZIV_CLANARINE" AS Tip,
+     KLIJENTI."IME" AS Ime,
+     KLIJENTI."PREZIME" AS Prezime,
+     KLIJENTI."BROJ_TELEFONA" AS Telefon,
+     KLIJENTI."BROJ_LICNE_KARTE" AS BrLicneKarte,
+     CLANSKA_KARTA."VAZI_OD" AS PlacenaDana,
+     CLANSKA_KARTA."VAZI_DO" AS VaziDo
+FROM
+     "pisg6"."CLANSKA_KARTA" CLANSKA_KARTA INNER JOIN "pisg6"."TIP_CLANARINE" TIP_CLANARINE ON CLANSKA_KARTA."ID_TIPA_CLANARINE" = TIP_CLANARINE."ID_TIPA_CLANARINE"
+     INNER JOIN "pisg6"."KLIJENTI" KLIJENTI ON CLANSKA_KARTA."ID_KLIJENTA" = KLIJENTI."ID_KLIJENTA"]]>
+	</queryString>
+	<field name="BrClKarte" class="java.math.BigDecimal"/>
+	<field name="Tip" class="java.lang.String"/>
+	<field name="Ime" class="java.lang.String"/>
+	<field name="Prezime" class="java.lang.String"/>
+	<field name="Telefon" class="java.lang.String"/>
+	<field name="BrLicneKarte" class="java.lang.String"/>
+	<field name="PlacenaDana" class="java.sql.Date"/>
+	<field name="VaziDo" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="429" height="108" uuid="c5ed91ee-c4ed-459a-90eb-baef4984e08e"/>
+				<imageExpression><![CDATA["Slika.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="276" y="53" width="263" height="33" uuid="ea20f296-2560-4035-8083-5068f27309d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Članovi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="378" y="86" width="174" height="22" uuid="ac654509-aa70-4017-9b34-0988b05bd317"/>
+				<text><![CDATA[Multiteka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="207" y="0" width="345" height="22" uuid="3555b6d9-9038-440b-9ceb-b60170c30d0d"/>
+				<textElement textAlignment="Right">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Elektrotehnički Fakultet u Istočnom Sarajevu]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="f9211d96-227c-44be-ab94-28d3ecbb0c50"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="69" height="15" uuid="0979459d-22f6-4e2d-8b30-9b40cc80ad43"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[BrClKarte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="69" y="19" width="69" height="15" uuid="74973a7f-f62f-448f-8ff0-888b843bad72"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Tip]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="19" width="69" height="15" uuid="6fc76525-8e44-4c40-b876-f66051f073ff"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Ime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="207" y="19" width="69" height="15" uuid="0d9bd405-6811-40ae-928c-f153fd4ebbe2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Prezime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="69" height="15" uuid="a37fc7c8-fb67-492a-9155-d2b3fa39ffd2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Telefon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="345" y="19" width="69" height="15" uuid="f3f57319-886a-4493-8df8-9a3a3e3de9b8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[BrLicneKarte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="19" width="69" height="15" uuid="7ba93186-4a7e-45b6-9e78-ef27692c6af1"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[PlacenaDana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="483" y="19" width="69" height="15" uuid="d9c27e66-25c0-4925-b844-0cfb73c654be"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[VaziDo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="10a9fe9d-9787-439e-8df1-eda28d1d583d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="69" height="15" uuid="741bbec9-3e4a-4794-8213-8e7e92c916df"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BrClKarte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="69" y="0" width="69" height="15" uuid="84bffdd6-f2fe-4df4-a92c-244d43ac2fe7"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="138" y="0" width="69" height="15" uuid="f713170a-ca08-4b36-90d9-0d2c46c0ca0c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Ime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="207" y="0" width="69" height="15" uuid="b3e5ca23-e188-4fab-90d2-63dc25e1aed0"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Prezime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="69" height="15" uuid="c84f5a88-bc40-4aac-8458-c966d754e82f"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Telefon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="345" y="0" width="69" height="15" uuid="88834e5d-6ecc-49c7-9f15-cd3a7a5e510a"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BrLicneKarte}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement style="Detail" x="414" y="0" width="69" height="15" uuid="e7c77c77-8a91-4050-a484-70374f4d1b92"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PlacenaDana}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement style="Detail" x="483" y="0" width="69" height="15" uuid="cdf012eb-83a4-4c82-b038-aee3c2bd24da"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VaziDo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="85dbf7aa-ec23-433e-815d-57538f11b8c5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="2f210425-22d7-4ffd-a855-d12b17ce82bb"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="158f5ea5-656b-4fb8-b55f-e589dcd1d72e"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="415e326b-8010-4a6a-8e46-5608fb723c62"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

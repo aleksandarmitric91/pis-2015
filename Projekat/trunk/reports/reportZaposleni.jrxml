@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportZaposleni" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9c8d1b6-ef4e-405f-8b22-17aa73a1aa93">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     REGISTAR_ZAPOSLENIH."RZ_IME" AS Ime,
+     REGISTAR_ZAPOSLENIH."RZ_PREZIME" AS Prezime,
+     REGISTAR_ZAPOSLENIH."RZ_POL" AS Pol,
+     REGISTAR_ZAPOSLENIH."RZ_DATUM_RODJENJA" AS DatRodjenja,
+     SISTEMATIZACIJA_RADNIH_MJESTA."SRM_NAZIV" AS RadnoMjesto,
+     RASPORED_RADNIH_MJESTA."RRM_DATUM_OD" AS Od,
+     RASPORED_RADNIH_MJESTA."RRM_DATUM_DO" AS Do
+FROM
+     "pisg6"."REGISTAR_ZAPOSLENIH" REGISTAR_ZAPOSLENIH INNER JOIN "pisg6"."RASPORED_RADNIH_MJESTA" RASPORED_RADNIH_MJESTA ON REGISTAR_ZAPOSLENIH."DRZAVA_U_KOJOJ_SE_P_LICE__NALAZI" = RASPORED_RADNIH_MJESTA."DRZAVA_U_KOJOJ_SE_P_LICE__NALAZI"
+     AND REGISTAR_ZAPOSLENIH."ID_PRAVNOG_LICA_GDJE_JE_ZAPOSLEN" = RASPORED_RADNIH_MJESTA."ID_PRAVNOG_LICA_GDJE_JE_ZAPOSLEN"
+     AND REGISTAR_ZAPOSLENIH."ID_ZAPOSLENOG" = RASPORED_RADNIH_MJESTA."ID_ZAPOSLENOG"
+     INNER JOIN "pisg6"."SISTEMATIZACIJA_RADNIH_MJESTA" SISTEMATIZACIJA_RADNIH_MJESTA ON RASPORED_RADNIH_MJESTA."DRZAVA_U_KOJOJ_SE_P_LICE__NALAZI" = SISTEMATIZACIJA_RADNIH_MJESTA."DRZAVA_U_KOJOJ_SE_NALAZI"
+     AND SISTEMATIZACIJA_RADNIH_MJESTA."ID_PRAVNOG_LICA" = RASPORED_RADNIH_MJESTA."ID_PRAVNOG_LICA_GDJE_JE_ZAPOSLEN"
+     AND SISTEMATIZACIJA_RADNIH_MJESTA."SRM_IDENTIFIKATOR" = RASPORED_RADNIH_MJESTA."SRM_IDENTIFIKATOR"]]>
+	</queryString>
+	<field name="Ime" class="java.lang.String"/>
+	<field name="Prezime" class="java.lang.String"/>
+	<field name="Pol" class="java.lang.String"/>
+	<field name="DatRodjenja" class="java.sql.Date"/>
+	<field name="RadnoMjesto" class="java.lang.String"/>
+	<field name="Od" class="java.sql.Date"/>
+	<field name="Do" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="003cfcb9-1b2b-4bba-973f-2315ee39bc31"/>
+				<imageExpression><![CDATA["Slika.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="186" y="0" width="401" height="62" uuid="5f073616-28b8-4d13-ba78-b41a77cf60ff"/>
+				<textElement verticalAlignment="Middle">
+					<font size="44" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Registar Zaposlenih]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="303" y="62" width="206" height="47" uuid="b57de506-9598-4eb8-a4e8-7c453c19df5a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="28" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Multiteka]]></text>
+			</staticText>
+			<image>
+				<reportElement x="587" y="0" width="298" height="126" uuid="876ea61c-3fe1-4d2f-9158-e2257447fd8a"/>
+				<imageExpression><![CDATA["Slika2.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="3fde94da-fe6f-4bde-a620-5e35b19f3e8d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="114" height="15" forecolor="#736343" uuid="7c442268-8b59-42a2-b703-aa2ddf496363"/>
+				<text><![CDATA[Ime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="114" y="0" width="114" height="15" forecolor="#736343" uuid="e0e0876e-c835-4f1e-af98-fba37f75da02"/>
+				<text><![CDATA[Prezime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="228" y="0" width="75" height="15" forecolor="#736343" uuid="fb6d6915-74f1-4aa3-8082-e57ba001d36e"/>
+				<text><![CDATA[Pol]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="303" y="0" width="153" height="15" forecolor="#736343" uuid="5114b709-79b0-419e-a44c-b06bcbe95985"/>
+				<text><![CDATA[DatRodjenja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="456" y="0" width="114" height="15" forecolor="#736343" uuid="dec992aa-8b7f-447d-bbd4-971e76f85f08"/>
+				<text><![CDATA[RadnoMjesto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="570" y="0" width="114" height="15" forecolor="#736343" uuid="83e8f436-dcfb-4da4-a79a-2807b2bfcfd3"/>
+				<text><![CDATA[DatumOd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="684" y="0" width="114" height="15" forecolor="#736343" uuid="0fcb35fa-500e-4fc2-9599-f54a3b75f649"/>
+				<text><![CDATA[DatumDo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="15ae8e31-ab3d-4b40-a9a5-c4aa31c0b7a3"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="114" height="15" uuid="16c20dc6-4146-48ef-97bc-521f4c2c5ede"/>
+					<textFieldExpression><![CDATA[$F{Ime}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="114" y="0" width="114" height="15" uuid="e980ebc0-7aeb-490c-a4f6-1781ee3ffa9e"/>
+					<textFieldExpression><![CDATA[$F{Prezime}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="228" y="0" width="75" height="15" uuid="22be8081-045b-489c-b5fc-f8eaf253919f"/>
+					<textFieldExpression><![CDATA[$F{Pol}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd-MMM-yy">
+					<reportElement style="Detail" x="303" y="0" width="153" height="15" uuid="c7628bf9-d252-4c2a-a873-05987bde16f0"/>
+					<textFieldExpression><![CDATA[$F{DatRodjenja}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="456" y="0" width="114" height="15" uuid="d02a3a84-9f66-4e6a-9491-598b8ca8d7a9"/>
+					<textFieldExpression><![CDATA[$F{RadnoMjesto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd MMMMM yyyy">
+					<reportElement style="Detail" x="570" y="0" width="114" height="15" uuid="c3786f48-4fe7-4ba9-9b9e-60fda62055c0"/>
+					<textFieldExpression><![CDATA[$F{Od}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd-MMM-yy">
+					<reportElement style="Detail" x="684" y="0" width="114" height="15" uuid="fc387a46-6c2b-446f-8cd6-a310ea5d9335"/>
+					<textFieldExpression><![CDATA[$F{Do}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="5caaf6b3-470a-4556-b1a8-26765e8c332b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="081181ba-062f-4d22-83f5-ef5a867a4842"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="50859c51-d28e-4a76-9d5f-d59dac20368c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="5d2b1a1a-dfa7-4eb9-a2a3-838021b5b718"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy h.mm a">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="6dbcb07b-fe09-4b9c-9a1e-910de952e431"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="324" y="5" width="191" height="19" uuid="7ffc1184-42cb-4b9b-92a5-e58f5a2c3f0a"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Projekrovanje Informacionh Sistema]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

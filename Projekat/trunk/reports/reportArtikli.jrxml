@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportArtikli" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40ae28d1-15cf-4103-b459-16b2ea34a6a3">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     ARTIKLI_I_PRIMJERCI."ID_PRIMJERKA" AS OznakaPrimjerka,
+     TIP_ARTIKLIA."NAZIV" AS Tip,
+     NASLOVI_I_OPIS."NAZIV" AS Naziv,
+     NASLOVI_I_OPIS."AUTOR" AS Autor,
+     NASLOVI_I_OPIS."IZDAVAC" AS Izdavac,
+     NASLOVI_I_OPIS."GODINA_IZDANJA" AS GodIzdanja,
+     NASLOVI_I_OPIS."PROIZVODJAC" AS Proizvodjac,
+     ARTIKLI_I_PRIMJERCI."DA_LI_JE_U_ISPRAVNOM_STANJU" AS UIspavnomStanju
+FROM
+     "pisg6"."TIP_ARTIKLIA" TIP_ARTIKLIA INNER JOIN "pisg6"."NASLOVI_I_OPIS" NASLOVI_I_OPIS ON TIP_ARTIKLIA."ID_TIPA_ARTIKLA" = NASLOVI_I_OPIS."ID_TIPA_ARTIKLA"
+     INNER JOIN "pisg6"."ARTIKLI_I_PRIMJERCI" ARTIKLI_I_PRIMJERCI ON NASLOVI_I_OPIS."ID_TIPA_ARTIKLA" = ARTIKLI_I_PRIMJERCI."ID_TIPA_ARTIKLA"
+     AND NASLOVI_I_OPIS."ID_NASLOVA" = ARTIKLI_I_PRIMJERCI."ID_NASLOVA"]]>
+	</queryString>
+	<field name="OznakaPrimjerka" class="java.lang.Integer"/>
+	<field name="Tip" class="java.lang.String"/>
+	<field name="Naziv" class="java.lang.String"/>
+	<field name="Autor" class="java.lang.String"/>
+	<field name="Izdavac" class="java.lang.String"/>
+	<field name="GodIzdanja" class="java.math.BigDecimal"/>
+	<field name="Proizvodjac" class="java.lang.String"/>
+	<field name="UIspavnomStanju" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="174" y="51" width="131" height="33" forecolor="#FF3333" uuid="d82007ed-531d-4da7-a658-22ff98a4ca05"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Multiteka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="148" y="84" width="157" height="22" forecolor="#0033FF" uuid="c493163a-8f7e-46f8-a8bd-40e12a0e7abf"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Artikli]]></text>
+			</staticText>
+			<image>
+				<reportElement x="305" y="0" width="373" height="106" uuid="f540e273-d2b1-4e90-aab1-9cfa0347d565"/>
+				<imageExpression><![CDATA["Slika.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="250" height="20" uuid="31d157e2-d9a8-47d4-b83e-7bcaf23a40d2"/>
+				<text><![CDATA[Elektrotehnicki Faluktet u Istocnom Sarajevu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="174" height="20" uuid="fb118d79-30d1-4621-bb41-9ae87841dd88"/>
+				<text><![CDATA[Projektovanje Informacionih Sistema]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="67af0f96-3ec1-40f4-92fa-be2e8a50657c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="56" height="34" uuid="9586717f-3d71-413a-bc52-f7df73fa4f03"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[OznakaPrimjerka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="56" y="19" width="69" height="15" uuid="ffccc86a-024f-4c75-88c3-e379b8d4c9e9"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Tip]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="125" y="19" width="94" height="15" uuid="2a4d061a-57e7-4bf7-891d-f49ba7e8e094"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Naziv]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="219" y="19" width="69" height="15" uuid="f5605d46-2961-46df-95e0-bd4b54af5271"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="288" y="20" width="69" height="15" uuid="eecf48fa-00e5-49d9-b9e3-a5d0076e1199"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Izdavac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="357" y="19" width="69" height="15" uuid="8c6e33c5-26e5-457c-a519-4630c7996dab"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[GodIzdanja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="426" y="19" width="69" height="15" uuid="9992c0dd-cc02-486b-ac93-a19e22a8b4a4"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Proizvodjac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="495" y="0" width="57" height="34" uuid="aace3e21-87ae-46e4-9ec1-5aeee1d91a63"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[UIspavnomStanju]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="0de08d5a-c245-4a2d-a118-d9df6360d297"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="56" height="15" uuid="468ae4a7-5bcd-462c-a757-762e226fe9b4"/>
+				<textFieldExpression><![CDATA[$F{OznakaPrimjerka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="56" y="1" width="69" height="15" uuid="3bab322c-44d5-4ee5-ad92-06e9117d62ee"/>
+				<textFieldExpression><![CDATA[$F{Tip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="125" y="0" width="94" height="35" uuid="387f2f7d-daab-4085-b0f2-04f5920886c4"/>
+				<textFieldExpression><![CDATA[$F{Naziv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="219" y="0" width="69" height="35" uuid="5d6224b3-8fe3-4b4f-8d48-a16bf6995bc5"/>
+				<textFieldExpression><![CDATA[$F{Autor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="288" y="0" width="69" height="35" uuid="bd7d7b0d-bd10-4b8e-a2f2-8ff10430d7e6"/>
+				<textFieldExpression><![CDATA[$F{Izdavac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="426" y="1" width="69" height="15" uuid="52c8872d-17c1-4bd2-a627-2c62aaf77455"/>
+				<textFieldExpression><![CDATA[$F{Proizvodjac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="495" y="0" width="57" height="15" uuid="9db4ca1c-246f-4b34-bebe-9a72986aa508"/>
+				<textFieldExpression><![CDATA[$F{UIspavnomStanju}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="357" y="1" width="69" height="15" uuid="42eeedfb-ce24-4a1d-bcf3-33105c16c82a"/>
+				<textFieldExpression><![CDATA[$F{GodIzdanja}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="355fe0e7-149a-48c6-8d89-ba58bf9fd486"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="44c43ecd-c8e3-4227-af59-8995118e27fc"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="839ee47d-4d4b-45c1-9c17-962eaa2f352e"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement style="Column header" x="0" y="0" width="174" height="20" uuid="21e5a3c7-5537-4e0c-a2ed-63dde2e7652f"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

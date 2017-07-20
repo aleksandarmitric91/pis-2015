@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportCjenovnik" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec3662fa-e143-4464-9ddb-b16cd41b8b7e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     TIP_USLUGE."NAZIV" AS Usluga,
+     TIP_CLANARINE."NAZIV_CLANARINE" AS TipClanarine,
+     TIP_ARTIKLIA."NAZIV" AS TipArtikla,
+     NASLOVI_I_OPIS."NAZIV" AS Naziv,
+     NASLOVI_I_OPIS."AUTOR" AS Autor,
+     CJENOVNIK."CJENA" AS Cjena
+FROM
+     "pisg6"."NASLOVI_I_OPIS" NASLOVI_I_OPIS INNER JOIN "pisg6"."CJENOVNIK" CJENOVNIK ON NASLOVI_I_OPIS."ID_TIPA_ARTIKLA" = CJENOVNIK."ID_TIPA_ARTIKLA"
+     AND NASLOVI_I_OPIS."ID_NASLOVA" = CJENOVNIK."ID_NASLOVA"
+     INNER JOIN "pisg6"."TIP_USLUGE" TIP_USLUGE ON CJENOVNIK."ID_TIPA_USLUGE" = TIP_USLUGE."ID_TIPA_USLUGE"
+     INNER JOIN "pisg6"."TIP_CLANARINE" TIP_CLANARINE ON CJENOVNIK."ID_TIPA_CLANARINE" = TIP_CLANARINE."ID_TIPA_CLANARINE"
+     INNER JOIN "pisg6"."TIP_ARTIKLIA" TIP_ARTIKLIA ON NASLOVI_I_OPIS."ID_TIPA_ARTIKLA" = TIP_ARTIKLIA."ID_TIPA_ARTIKLA"]]>
+	</queryString>
+	<field name="Usluga" class="java.lang.String"/>
+	<field name="TipClanarine" class="java.lang.String"/>
+	<field name="TipArtikla" class="java.lang.String"/>
+	<field name="Naziv" class="java.lang.String"/>
+	<field name="Autor" class="java.lang.String"/>
+	<field name="Cjena" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="163" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="184" height="144" uuid="a8e659ac-ddb5-4d7c-af0a-dd799ccfecdf"/>
+				<imageExpression><![CDATA["Slika2.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="216" y="0" width="321" height="62" uuid="a6a25489-2f65-4ab8-bc61-05c1809851a1"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Cjenovnik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="216" y="62" width="201" height="32" uuid="e28ad50f-4fba-4d3b-8403-dc3d4b6ce221"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Multiteka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="107" width="175" height="19" uuid="63d79d78-54f6-40ed-adb3-cc929e4dd284"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Ul. Vuka Karadžića br.3.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="144" width="175" height="19" uuid="eb23cf58-e1d4-440f-b446-4cc4c2612bbc"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[PIB: 4454lp-62]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="126" width="175" height="19" uuid="a94cc79b-84c9-4a42-bd15-42e769b2dc1a"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[78000 Banja Luka BIH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="184" y="104" width="196" height="22" uuid="051064a6-38ce-41fe-9f7e-2f2068635067"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Poslovna godina: 2015]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="67d20c50-a947-4b56-b881-3216af816afc"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="92" height="15" forecolor="#736343" uuid="5a3ca6cd-89a8-4417-adf5-3c2baa898634"/>
+				<text><![CDATA[Usluga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="0" width="92" height="15" forecolor="#736343" uuid="41f61c10-5629-4316-91ed-6282c5279e3a"/>
+				<text><![CDATA[TipClanarine]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="0" width="92" height="15" forecolor="#736343" uuid="c185dae9-f970-46e5-a72b-d31fe06ccccc"/>
+				<text><![CDATA[TipArtikla]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="0" width="104" height="15" forecolor="#736343" uuid="59228a12-2842-41ea-ab69-8526cb7e9e39"/>
+				<text><![CDATA[Naziv]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="384" y="1" width="92" height="15" forecolor="#736343" uuid="45341c87-cb5e-4a66-a104-d5f0c2397b30"/>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="476" y="0" width="76" height="15" forecolor="#736343" uuid="e231e937-0642-4c7b-aebc-d1d42a83551d"/>
+				<text><![CDATA[Cjena]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="c21b5a89-dc66-480b-9eca-dbc4ae86dae3"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="92" height="15" uuid="a19c61a0-b16b-4584-a90d-023265b2b2dd"/>
+					<textFieldExpression><![CDATA[$F{Usluga}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="92" y="0" width="92" height="15" uuid="e4b2d8b4-8f5b-468f-b313-6f2bcac54c30"/>
+					<textFieldExpression><![CDATA[$F{TipClanarine}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="4191c6e6-d846-4706-8b0f-0a6be9842095"/>
+					<textFieldExpression><![CDATA[$F{TipArtikla}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="276" y="0" width="104" height="15" uuid="82737f02-b95a-4e5d-aebe-aa8f824a7ff5"/>
+					<textFieldExpression><![CDATA[$F{Naziv}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="384" y="0" width="92" height="15" uuid="66123330-4f2e-44f0-9c9e-34acdba98b6a"/>
+					<textFieldExpression><![CDATA[$F{Autor}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="476" y="0" width="76" height="15" uuid="8487f7a0-57d7-47b0-aae9-31b026988b5a"/>
+					<textFieldExpression><![CDATA[$F{Cjena}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="3fa43415-1c98-47f1-8df6-dbc0e8ebfd25"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="818f0514-5fe9-4b3a-bd7e-a9f90a6562cf"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0906b315-0c43-406a-b5d9-93893c8b89e3"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="a93de3bf-de28-48d3-8504-37edb70ce703"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="9935dcf4-1a63-4c9c-b21a-ac88319aab2a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
